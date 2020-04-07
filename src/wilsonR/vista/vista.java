@@ -80,14 +80,16 @@ public class vista extends javax.swing.JFrame {
         this.add(cp);
 
         datos = new DefaultPieDataset();
-        datos.setValue("Menores", a);
-        datos.setValue("Jovenes", b);
         datos.setValue("Adultos", c);
         datos.setValue("Mayores", d);
+        datos.setValue("Menores", a);
+        datos.setValue("Jovenes", b);
+        
         ch = ChartFactory.createPieChart3D("TABULACION DE EDAD", datos, true, true, false);
         cp1 = new ChartPanel(ch);
         cp1 = new ChartPanel(ch);
         cp1.setBounds(600, 410, 550, 400);
+        
         this.add(cp1);
         this.repaint();
 
