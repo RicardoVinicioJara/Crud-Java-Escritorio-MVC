@@ -84,12 +84,12 @@ public class vista extends javax.swing.JFrame {
         datos.setValue("Mayores", d);
         datos.setValue("Menores", a);
         datos.setValue("Jovenes", b);
-        
+
         ch = ChartFactory.createPieChart3D("TABULACION DE EDAD", datos, true, true, false);
         cp1 = new ChartPanel(ch);
         cp1 = new ChartPanel(ch);
         cp1.setBounds(600, 410, 550, 400);
-        
+
         this.add(cp1);
         this.repaint();
 
@@ -445,7 +445,7 @@ public class vista extends javax.swing.JFrame {
             imagen.setAlignment(Element.ALIGN_CENTER);
             document.add(imagen);
 
-            Paragraph titulo = new Paragraph("REPORTE GENERO",
+            Paragraph titulo = new Paragraph("REPORTE FEMENINO",
                     FontFactory.getFont("arial", // fuente
                             22, // tamaño
                             Font.NORMAL, // estilo
@@ -500,7 +500,7 @@ public class vista extends javax.swing.JFrame {
 
             document.add(Chunk.NEXTPAGE);
 
-            Paragraph t1 = new Paragraph("LISTA DE PERSONAS",
+            Paragraph t1 = new Paragraph("LISTA DE MUJERES",
                     FontFactory.getFont("arial", // fuente
                             22, // tamaño
                             Font.NORMAL, // estilo
@@ -531,17 +531,18 @@ public class vista extends javax.swing.JFrame {
             int c = 0;
             int d = 0;
             for (Persona p : lsRiego) {
-
-                table.addCell(p.getId() + "");
-                table.addCell(p.getNom() + "");
-                table.addCell(p.getSexo() + "");
+                if (p.getSexo().equals("Femenino")) {
+                    table.addCell(p.getId() + "");
+                    table.addCell(p.getNom() + "");
+                    table.addCell(p.getSexo() + "");
+                    table.addCell(p.getEdad() + "");
+                }
                 if (p.getSexo().equals("Masculino")) {
                     masculinos++;
                 } else {
                     femeninos++;
                 }
 
-                table.addCell(p.getEdad() + "");
                 int edad = Integer.valueOf(p.getEdad());
                 if (edad < 18) {
                     a++;
@@ -572,21 +573,21 @@ public class vista extends javax.swing.JFrame {
 
             document.add(Chunk.NEWLINE);
 
-            datos = new DefaultPieDataset();
-            datos.setValue("Menores", a);
-            datos.setValue("Jovenes", b);
-            datos.setValue("Adultos", c);
-            datos.setValue("Mayores", d);
-            ch = ChartFactory.createPieChart3D("TABULACION DE EDAD", datos, true, true, false);
-            cp = new ChartPanel(ch);
-            out = new FileOutputStream("tabulacion.png");
-            ChartUtilities.writeChartAsPNG(out, ch, 500, 500);
-
-            imagen = Image.getInstance("tabulacion.png");
-            imagen.setAlignment(Element.ALIGN_CENTER);
-            document.add(imagen);
-
-            document.add(Chunk.NEWLINE);
+//            datos = new DefaultPieDataset();
+//            datos.setValue("Menores", a);
+//            datos.setValue("Jovenes", b);
+//            datos.setValue("Adultos", c);
+//            datos.setValue("Mayores", d);
+//            ch = ChartFactory.createPieChart3D("TABULACION DE EDAD", datos, true, true, false);
+//            cp = new ChartPanel(ch);
+//            out = new FileOutputStream("tabulacion.png");
+//            ChartUtilities.writeChartAsPNG(out, ch, 500, 500);
+//
+//            imagen = Image.getInstance("tabulacion.png");
+//            imagen.setAlignment(Element.ALIGN_CENTER);
+//            document.add(imagen);
+//
+//            document.add(Chunk.NEWLINE);
 
             document.close();
             Desktop des = Desktop.getDesktop();
